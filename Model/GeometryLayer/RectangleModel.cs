@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PCAD.UI;
 
 namespace PCAD.Model
 {
@@ -12,7 +11,7 @@ namespace PCAD.Model
     public class RectangleModel : GeometryModel
     {
         public Vec<Coordinate> P1;
-        public GeometryStyleAsset.GeometryColor Color;
+        public GeometryColor Color;
 
         [Serializable]
         public class Serialization
@@ -48,13 +47,13 @@ namespace PCAD.Model
             var p1Serialized = new Vec<string>(serialization.P1XID, serialization.P1YID, serialization.P1ZID);
             var p1 = new Vec<Coordinate>(axis => coordinates[axis].First(c => c.ID == p1Serialized[axis]));
 
-            GeometryStyleAsset.GeometryColor color;
-            if (serialization.Color == GeometryStyleAsset.GeometryColor.White.ToString())
-                color = GeometryStyleAsset.GeometryColor.White;
-            else if (serialization.Color == GeometryStyleAsset.GeometryColor.Black.ToString())
-                color = GeometryStyleAsset.GeometryColor.Black;
-            else // (serialization.Color == GeometryStyleAsset.GeometryColor.Grey.ToString())
-                color = GeometryStyleAsset.GeometryColor.Grey;
+            GeometryColor color;
+            if (serialization.Color == GeometryColor.White.ToString())
+                color = GeometryColor.White;
+            else if (serialization.Color == GeometryColor.Black.ToString())
+                color = GeometryColor.Black;
+            else // (serialization.Color == GeometryColor.Grey.ToString())
+                color = GeometryColor.Grey;
 
             return new RectangleModel()
             {
