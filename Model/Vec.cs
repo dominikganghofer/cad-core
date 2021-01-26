@@ -40,6 +40,10 @@ namespace PCAD.Model
         public T Y;
         public T Z;
 
+        public override string ToString()
+        {
+            return $"{X}, {Y}, {Z}";
+        }
 
         public Vec()
         {
