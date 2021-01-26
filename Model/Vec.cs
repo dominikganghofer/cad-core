@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PCAD.Helper
+namespace PCAD.Model
 {
     /// <summary>
     /// A generic 3 dimensional vector  
