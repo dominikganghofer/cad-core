@@ -47,5 +47,11 @@ namespace PCAD.Model
             geometries.AddRange(serialization.lines.Select(l => LineModel.FromSerialization(l, coordinates)));
             geometries.AddRange(serialization.rectangles.Select(r => RectangleModel.FromSerialization(r, coordinates)));
         }
+
+        public void Initialize(Vec<float> mousePositionAsOrigin)
+        {
+            coordinateSystem = new CoordinateSystem(mousePositionAsOrigin);
+            geometries = new List<GeometryModel>();
+        }
     }
 }
