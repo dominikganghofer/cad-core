@@ -14,6 +14,7 @@ namespace PCAD.Model
         public abstract float Value { get; }
         public bool IsCurrentlyDrawn { get; private set; }
         public List<Coordinate> Parents;
+        public abstract override string ToString();
 
         public float ParentValue => Parents[0].Value;
         public abstract (float min, float max) GetBounds();
@@ -63,7 +64,7 @@ namespace PCAD.Model
                 _parameter = value;
                 ChangedEvent?.Invoke();
             }
-        }
+    }
 
         public void RegisterCoordinate(Coordinate child, Action onValueChanged)
         {

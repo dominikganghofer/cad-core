@@ -63,5 +63,10 @@ namespace PCAD.Model
                 Color = color,
             };
         }
+
+        public override string ToString()
+        {
+            return $"Rect:{P0}, {P1}";
+        }
     }
 }

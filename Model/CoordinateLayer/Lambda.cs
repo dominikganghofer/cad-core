@@ -60,5 +60,7 @@ namespace PCAD.Model
                 Index = index, ParentIDs = Parents.Select(p => p.ID).ToList(), ParameterID = Parameter.ID, ID = this.ID
             };
         }
+        public override string ToString() =>  $"L({Parameter})" ;
+
     }
 }

@@ -15,5 +15,7 @@ namespace PCAD.Model
         public Vec<float> SecondaryPosition => _coordinates.Select(coordinate => coordinate.SecondaryCoordinate.Value);
 
         private readonly Vec<AnchorCoordinates> _coordinates;
+
+        public override string ToString() => $"Anchor: {_coordinates}";
     }
 }

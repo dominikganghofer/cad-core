@@ -37,5 +37,10 @@ namespace PCAD.Model
         }
 
         private readonly Origin _origin;
+
+        public override string ToString()
+        {
+            return $"AnchorCoordinate: Primary:{PrimaryCoordinate}, Secondary{SecondaryCoordinate}";
+        }
     }
 }

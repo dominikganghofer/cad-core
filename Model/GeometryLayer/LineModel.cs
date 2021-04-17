@@ -51,5 +51,10 @@ namespace PCAD.Model
                 IsBaked = true
             };
         }
+
+        public override string ToString()
+        {
+            return $"LineModel: P0:{P0} P1:{P1}";
+        }
     }
 }

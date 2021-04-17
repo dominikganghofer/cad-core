@@ -52,6 +52,7 @@ namespace PCAD.Model
                 OriginPosition = _originPosition
             };
         }
+        public override string ToString() =>  $"O({Value:###.##})" ;
 
     }
 }

@@ -10,5 +10,7 @@ namespace PCAD.Model
     {
         public Vec<Coordinate> P0;
         public bool IsBaked;
+
+        public abstract override string ToString();
     }
 }

@@ -30,6 +30,13 @@ namespace PCAD.Model
             public Origin.Serialization Origin;
         }
 
+        public override string ToString()
+        {
+            var output = $" Axis:{Direction}|";
+            output += $"SnapRadius:{SnapRadius}\n";
+            return Coordinates.Aggregate(output, (current, c) => current + $"{c}\n");
+        }
+        
         public SerializableAxis ToSerializableType()
         {
             var serializableAxis = new SerializableAxis();
@@ -305,5 +312,7 @@ namespace PCAD.Model
 
             return closestCoordinate;
         }
+
+       
     }
 }

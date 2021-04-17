@@ -39,5 +39,10 @@ namespace PCAD.Model
                 IsBaked = true
             };
         }
+
+        public override string ToString()
+        {
+            return $"PointModel: P0:{P0}";
+        }
     }
 }

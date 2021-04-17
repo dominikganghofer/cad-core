@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace PCAD.Model
 {
@@ -10,6 +11,7 @@ namespace PCAD.Model
     {
         public string ID;
         public float Value;
+        public override string ToString() => $"{Value:###.##}";
 
         public Parameter(string id, float value)
         {

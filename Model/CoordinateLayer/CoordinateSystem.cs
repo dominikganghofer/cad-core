@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace PCAD.Model
 {
@@ -8,7 +9,7 @@ namespace PCAD.Model
     /// The coordinate system holds all components of the coordinate layer. 
     /// </summary>
     [Serializable]
-    public class CoordinateSystem 
+    public class CoordinateSystem
     {
         //todo: subscribe and update only on change
         public event Action CoordinateSystemChangedEvent;
@@ -24,7 +25,7 @@ namespace PCAD.Model
             public List<Parameter> Parameters;
         }
 
-        public  SerializableCoordinateSystem GetSerializableType()
+        public SerializableCoordinateSystem GetSerializableType()
         {
             return new SerializableCoordinateSystem
             {
@@ -32,20 +33,21 @@ namespace PCAD.Model
             };
         }
 
-        public  void SetSerialization(SerializableCoordinateSystem serialCS)
+        public void SetSerialization(SerializableCoordinateSystem serialCS)
         {
+            Debug.Log("Coordinate System - Set Serialization");
             SnappedCoordinate = new Vec<Coordinate>();
             SnappedParameter = new Vec<Parameter>();
-            Axes.X.SetSerializableType(serialCS.Axes[0],serialCS.Parameters);
-            Axes.Y.SetSerializableType(serialCS.Axes[1],serialCS.Parameters);
-            Axes.Z.SetSerializableType(serialCS.Axes[2],serialCS.Parameters);
+            Axes.X.SetSerializableType(serialCS.Axes[0], serialCS.Parameters);
+            Axes.Y.SetSerializableType(serialCS.Axes[1], serialCS.Parameters);
+            Axes.Z.SetSerializableType(serialCS.Axes[2], serialCS.Parameters);
         }
-        
+
         public CoordinateSystem(Vec<float> mousePositionAsOrigin)
         {
             Axes = new Vec<Axis>
             {
-                X = new Axis(OnAxisChanged,Vec.AxisID.X, mousePositionAsOrigin.X),
+                X = new Axis(OnAxisChanged, Vec.AxisID.X, mousePositionAsOrigin.X),
                 Y = new Axis(OnAxisChanged, Vec.AxisID.Y, mousePositionAsOrigin.Y),
                 Z = new Axis(OnAxisChanged, Vec.AxisID.Z, mousePositionAsOrigin.Z)
             };
@@ -58,7 +60,7 @@ namespace PCAD.Model
             Anchor = new Anchor(xAnchorCoordinate, yAnchorCoordinate, zAnchorCoordinate);
         }
 
-       
+
         public Axis AxisThatContainsCoordinate(Coordinate c)
         {
             foreach (Axis a in Axes)
@@ -101,10 +103,22 @@ namespace PCAD.Model
 
             return distinctList.OrderBy(p => p.Value).ToList();
         }
-        
+
         private void OnAxisChanged()
         {
             CoordinateSystemChangedEvent?.Invoke();
+        }
+
+
+        public override string ToString()
+        {
+            var output = "";
+            output += $"Anchor: {Anchor}\n";
+            output += $"SnappedParameter: {SnappedParameter}\n";
+            output += $"SnappedCoordinate: {SnappedCoordinate}\n";
+            output += Axes[Vec.AxisID.X].ToString();
+            output += Axes[Vec.AxisID.Z].ToString();
+            return output;
         }
     }
 }

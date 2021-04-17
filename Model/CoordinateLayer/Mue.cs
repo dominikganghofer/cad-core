@@ -10,10 +10,12 @@ namespace PCAD.Model
     public class Mue : Coordinate
     {
         public bool PointsInNegativeDirection;
-        public override string Name => $"Mue: {Parameter}";
+        public override string Name => $"M({Parameter})";
         
         public override float Value =>
             PointsInNegativeDirection ? ParentValue - Parameter.Value : ParentValue + Parameter.Value;
+
+        public override string ToString() => PointsInNegativeDirection ?  $"M[-{Parameter}]" :  $"M[{Parameter}]";
 
         public override (float min, float max) GetBounds()
         {

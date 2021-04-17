@@ -42,7 +42,7 @@ namespace PCAD.Model
 
         public override string ToString()
         {
-            return $"{X}, {Y}, {Z}";
+            return $"[{X}, {Z}]";
         }
 
         public Vec()
