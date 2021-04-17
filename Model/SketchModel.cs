@@ -52,6 +52,9 @@ namespace PCAD.Model
         {
             coordinateSystem = new CoordinateSystem(mousePositionAsOrigin);
             geometries = new List<GeometryModel>();
+            HasBeenInitialized = true;
         }
+
+        public bool HasBeenInitialized { get; private set; }
     }
 }
