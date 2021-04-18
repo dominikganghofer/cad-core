@@ -16,6 +16,6 @@ namespace PCAD.Model
 
         private readonly Vec<AnchorCoordinates> _coordinates;
 
-        public override string ToString() => $"Anchor: {_coordinates}";
+        public override string ToString() => $"{_coordinates}";
     }
 }

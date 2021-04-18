@@ -116,9 +116,13 @@ namespace PCAD.Model
             output += $"Anchor: {Anchor}\n";
             output += $"SnappedParameter: {SnappedParameter}\n";
             output += $"SnappedCoordinate: {SnappedCoordinate}\n";
+            output += $"------ \n";
+            output += $"Coordinates: \n";
             output += Axes[Vec.AxisID.X].ToString();
             output += Axes[Vec.AxisID.Z].ToString();
-            return output;
+            output += $"------ \n";
+            output += $"Parameters: \n";
+            return GetAllParameters().Aggregate(output, (current, p) => current + $"{p}\n");
         }
     }
 }

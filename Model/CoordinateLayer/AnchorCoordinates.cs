@@ -40,7 +40,7 @@ namespace PCAD.Model
 
         public override string ToString()
         {
-            return $"AnchorCoordinate: Primary:{PrimaryCoordinate}, Secondary{SecondaryCoordinate}";
+            return $"AnchrCrd: Pri:{PrimaryCoordinate}, Sec:{SecondaryCoordinate}";
         }
     }
 }

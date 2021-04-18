@@ -19,7 +19,7 @@ namespace PCAD.Model
 
         private event Action AxisChangedEvent;
 
-        private const float SnapRadius = 0.01f;
+        // private const float SnapRadius = 0.01f;
         private const float Epsilon = 0.0001f;
 
         [Serializable]
@@ -33,7 +33,7 @@ namespace PCAD.Model
         public override string ToString()
         {
             var output = $" Axis:{Direction}|";
-            output += $"SnapRadius:{SnapRadius}\n";
+            // output += $"SnapRadius:{SnapRadius}\n";
             return Coordinates.Aggregate(output, (current, c) => current + $"{c}\n");
         }
         
@@ -208,13 +208,13 @@ namespace PCAD.Model
             return newCoordinate;
         }
 
-        public Coordinate TryToSnapToExistingCoordinate(float position, bool isPreview)
+        public Coordinate TryToSnapToExistingCoordinate(float position, bool isPreview, float snapRadius)
         {
             var closestCoordinate = FindClosestCoordinate(position);
             var distanceToClosestCoordinate = Math.Abs(position - closestCoordinate.Value);
             var distanceToPotentialLambdaCoordinate = DistancePotentialToLambdaCoordinate(position);
 
-            if (distanceToClosestCoordinate > SnapRadius && distanceToPotentialLambdaCoordinate > SnapRadius)
+            if (distanceToClosestCoordinate > snapRadius && distanceToPotentialLambdaCoordinate > snapRadius)
                 return null;
 
             if (distanceToClosestCoordinate < distanceToPotentialLambdaCoordinate + Epsilon)
@@ -225,7 +225,7 @@ namespace PCAD.Model
 
 
         public (Parameter parameter, bool pointsInNegativeDirection)? TryToSnapToExistingParameter(
-            float parameterValue, List<Parameter> allParameters)
+            float parameterValue, List<Parameter> allParameters, float snapRadius)
         {
             if (Coordinates.Count == 0)
                 return null;
@@ -245,7 +245,7 @@ namespace PCAD.Model
                     candidate = p;
             }
 
-            if (!candidate.HasValue || candidate.Value.distance > SnapRadius)
+            if (!candidate.HasValue || candidate.Value.distance > snapRadius)
                 return null;
 
             return (candidate.Value.p, candidate.Value.pointsInNegativeDirection);
