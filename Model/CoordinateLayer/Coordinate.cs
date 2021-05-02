@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PCAD.UI.DragInteraction;
 
 namespace PCAD.Model
 {
@@ -7,7 +8,7 @@ namespace PCAD.Model
     /// Abstract class for all coordinates. 
     /// </summary>
     [Serializable]
-    public abstract class Coordinate
+    public abstract class Coordinate : DragInteraction.IDraggable
     {
         public abstract string Name { get; }
         public string ID;
@@ -64,7 +65,7 @@ namespace PCAD.Model
                 _parameter = value;
                 ChangedEvent?.Invoke();
             }
-    }
+        }
 
         public void RegisterCoordinate(Coordinate child, Action onValueChanged)
         {

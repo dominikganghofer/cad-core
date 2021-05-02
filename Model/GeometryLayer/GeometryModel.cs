@@ -1,4 +1,5 @@
 ﻿using System;
+using PCAD.UI.DragInteraction;
 
 namespace PCAD.Model
 {
@@ -6,7 +7,7 @@ namespace PCAD.Model
     /// Abstract base class for all geometry models. 
     /// </summary>
     [Serializable]
-    public abstract class GeometryModel
+    public abstract class GeometryModel : DragInteraction.IDraggable
     {
         public Vec<Coordinate> P0;
         public bool IsBaked;

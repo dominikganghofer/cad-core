@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PCAD.UI.DragInteraction;
 
 namespace PCAD.Model
 {
