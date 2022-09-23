@@ -1,2 +1,3 @@
 # cad-core
-Shared module of pcad apps
+Shared common code of ratio apps
+
